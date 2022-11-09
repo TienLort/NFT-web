@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import { BrowserRouter as Router,Routes, Route, Navigate } from "react-router-dom";
 import './App.css';
+import Home from "./pages/Home";
+import Market from "./pages/Market";
+import Create from "./pages/Create";
+import Contact from "./pages/Contact";
+
+import Wallet from "./pages/Wallet";
+import NftDetails from "./pages/NftDetails";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header />
+        <div>
+          <Routes>
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/market" element={<Market />} />
+            <Route path="/create" element={<Create />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/wallet" element={<Wallet />} />
+            <Route path="/market/:id" element={<NftDetails />} />
+          </Routes>
+        </div>
+        <Footer />
+      </Router>
     </div>
   );
 }
